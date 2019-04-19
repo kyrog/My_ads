@@ -12,8 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('testvue');
 });
 
-Route::get('/home', 'IndexController@index');
+// Route::get('/home', 'IndexController@index');
 
+
+
+Auth::routes(['verify' => true]);
+
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+
+Route::resource('/article', 'ArticleController')->middleware('verified');
